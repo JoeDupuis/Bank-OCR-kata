@@ -1,0 +1,64 @@
+{
+	"license": "MIT",
+	"devDependencies": {
+		"@babel/cli": "^7.10.5",
+		"@babel/core": "^7.9.6",
+		"@babel/plugin-transform-modules-commonjs": "^7.9.6",
+		"babel-jest": "^26.0.1",
+		"eslint": "^6.8.0",
+		"jest": "^26.0.1"
+	},
+	"scripts": {
+		"start": "node bottle.js",
+		"build": "babel lib --out-dir build/lib",
+		"lint": "eslint lib test bottle.js",
+		"test": "jest"
+	},
+	"jest": {
+		"testEnvironment": "node"
+	},
+	"babel": {
+		"plugins": [
+			"@babel/plugin-transform-modules-commonjs"
+		]
+	},
+	"eslintConfig": {
+		"env": {
+			"jest": true,
+			"jasmine": true,
+			"browser": true
+		},
+		"extends": "eslint:recommended",
+		"parserOptions": {
+			"ecmaVersion": 2015,
+			"sourceType": "module"
+		},
+		"rules": {
+			"complexity": [
+				"error",
+				2
+			],
+			"eqeqeq": [
+				"error",
+				"always"
+			],
+			"indent": [
+				"error",
+				"tab",
+				{
+					"SwitchCase": 1
+				}
+			],
+			"quotes": [
+				"error",
+				"single"
+			],
+			"semi": [
+				"error",
+				"never"
+			]
+		}
+	},
+	"dependencies": {
+	}
+}
