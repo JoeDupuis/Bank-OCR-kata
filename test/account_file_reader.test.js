@@ -9,7 +9,8 @@ import {
 	FIXTURE_DIGIT_6,
 	FIXTURE_DIGIT_7,
 	FIXTURE_DIGIT_8,
-	FIXTURE_DIGIT_9
+	FIXTURE_DIGIT_9,
+	FIXTURE_BROKEN_DIGIT
 } from './fixtures/digits'
 
 import {AccountFileReader} from '../lib/account_file_reader'
@@ -135,6 +136,14 @@ describe('AccountFileReader', ()=>{
 			let digit = subject.resolveDigit(digitToResolve)
 
 			expect(digit).toBe(9)
+		})
+
+		test('Resolve broken digit', ()=>{
+			let digitToResolve = FIXTURE_BROKEN_DIGIT
+
+			let digit = subject.resolveDigit(digitToResolve)
+
+			expect(digit).toBe('?')
 		})
 
 	})
