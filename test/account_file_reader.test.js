@@ -187,4 +187,22 @@ describe('AccountFileReader', ()=>{
 		})
 
 	})
+
+	describe('ValidateAccountNumber returns the validity of an account number array', ()=>{
+		test('Should return false if the account number is not valid', ()=>{
+			let invalidAccountNumber = [6,6,4,3,7,1,4,9,5] //664371495
+
+			let valid = subject.validateAccountNumber(invalidAccountNumber)
+
+			expect(valid).toBe(false)
+		})
+
+		test('Should return true if the account number is valid', ()=>{
+			let validAccountNumber = [4,5,7,5,0,8,0,0,0] //457508000
+
+			let valid = subject.validateAccountNumber(validAccountNumber)
+
+			expect(valid).toBe(true)
+		})
+	})
 })
