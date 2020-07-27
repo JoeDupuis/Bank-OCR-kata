@@ -10,14 +10,46 @@ describe('BankOCR', ()=>{
 		subject.run()
 	})
 
-	test('Parse should ask the AccountFileReader to parse a given filename', ()=> {
-		let fakeAccountFileReader = new AccountFileReader()
-		spyOn(fakeAccountFileReader, 'parseScannedFile')
-		let subject = new BankOCR(fakeAccountFileReader)
-		let accountFile = './test/fixtures/dummy_accounts_file.txt'
+	describe('Parse', ()=>{
+		test('Should ask the AccountFileReader to parse a given filename', ()=> {
+			let fakeAccountFileReader = new AccountFileReader()
+			spyOn(fakeAccountFileReader, 'parseScannedFile')
+			let subject = new BankOCR(fakeAccountFileReader)
+			let accountFile = './test/fixtures/dummy_accounts_file.txt'
 
-		subject.parseAccountFile({filename: accountFile})
+			subject.parseAccountFile({filename: accountFile})
 
-		expect(fakeAccountFileReader.parseScannedFile).toHaveBeenCalledWith(accountFile)
+			expect(fakeAccountFileReader.parseScannedFile).toHaveBeenCalledWith(accountFile)
+		})
+
+	})
+
+	describe('Validate', ()=>{
+		let originalLog = console.log
+		beforeEach(() => {
+			console.log = jasmine.createSpy('log')
+		})
+
+		afterEach(() => {
+			console.log = originalLog
+		})
+
+		test('Should print invalid if the given account number is invalid', ()=> {
+			let subject = new BankOCR()
+			let invalidAccountNumber = 664371495
+
+			subject.validateAccountNumber({accountNumber: invalidAccountNumber})
+
+			expect(console.log).toHaveBeenCalledWith('invalid')
+		})
+
+		test('Should print valid if the given account number is valid', ()=> {
+			let subject = new BankOCR()
+			let invalidAccountNumber = 457508000
+
+			subject.validateAccountNumber({accountNumber: invalidAccountNumber})
+
+			expect(console.log).toHaveBeenCalledWith('valid')
+		})
 	})
 })
