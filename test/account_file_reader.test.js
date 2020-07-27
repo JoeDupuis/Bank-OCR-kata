@@ -205,6 +205,18 @@ describe('AccountFileReader', ()=>{
 			expect(console.log.calls.argsFor(10)[0]).toContain('123456789')
 		})
 
+
+		test('Print the account number validity status next to the account number', ()=>{
+			let accountFile = './test/fixtures/validation_dummy_account_file.txt'
+
+			subject.parseScannedFile(accountFile)
+
+			expect(console.log.calls.argsFor(0)[0]).toBe( '711111111')
+			expect(console.log.calls.argsFor(1)[0]).toBe( '777777177')
+			expect(console.log.calls.argsFor(2)[0]).toBe( '100000051	ERR')
+			expect(console.log.calls.argsFor(3)[0]).toContain( '49006771?	ILL')
+			expect(console.log.calls.argsFor(4)[0]).toContain( '1234?678?	ILL')
+		})
 	})
 
 	describe('validateAccountNumberArray returns the validity of an account number array', ()=>{
