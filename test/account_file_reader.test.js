@@ -157,4 +157,34 @@ describe('AccountFileReader', ()=>{
 		})
 
 	})
+
+	describe('Should parse the account number from a scanned file', ()=>{
+		let originalLog = console.log
+		beforeEach(() => {
+			console.log = jasmine.createSpy("log")
+		})
+
+		afterEach(() => {
+			console.log = originalLog
+		})
+
+		test('Parse fixture file', ()=>{
+			let accountFile = './test/fixtures/dummy_accounts_file.txt'
+
+			subject.parseScannedFile(accountFile)
+
+			expect(console.log.calls.argsFor(0)[0]).toEqual( '000000000')
+			expect(console.log.calls.argsFor(1)[0]).toEqual( '111111111')
+			expect(console.log.calls.argsFor(2)[0]).toEqual( '222222222')
+			expect(console.log.calls.argsFor(3)[0]).toEqual( '333333333')
+			expect(console.log.calls.argsFor(4)[0]).toEqual( '444444444')
+			expect(console.log.calls.argsFor(5)[0]).toEqual( '555555555')
+			expect(console.log.calls.argsFor(6)[0]).toEqual( '666666666')
+			expect(console.log.calls.argsFor(7)[0]).toEqual( '777777777')
+			expect(console.log.calls.argsFor(8)[0]).toEqual( '888888888')
+			expect(console.log.calls.argsFor(9)[0]).toEqual( '999999999')
+			expect(console.log.calls.argsFor(10)[0]).toEqual('123456789')
+		})
+
+	})
 })
