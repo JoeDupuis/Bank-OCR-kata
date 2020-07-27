@@ -16,7 +16,7 @@ import {AccountFileReader} from '../lib/account_file_reader'
 
 describe('AccountFileReader', ()=>{
 	let subject = new AccountFileReader()
-	describe('Should split account number in sepaparate digit string', ()=>{
+	describe('SplitAccountScanToDigitString should split account number in sepaparate digit string', ()=>{
 		test('Split account 123456789', ()=>{
 			let accountScanToSplit = FIXTURE_ACCOUNT_123456789
 
@@ -50,7 +50,7 @@ describe('AccountFileReader', ()=>{
 		})
 	})
 
-	describe('Should resolve scanned digit to an integer', ()=>{
+	describe('ResolveDigit should resolve scanned digit to an integer', ()=>{
 		test('Resolve 0', ()=>{
 			let digitToResolve = FIXTURE_DIGIT_0
 
@@ -139,7 +139,7 @@ describe('AccountFileReader', ()=>{
 
 	})
 
-	describe('Should resolve scanned account number to an array of digit', ()=>{
+	describe('ResolveDigits should resolve scanned account number to an array of digit', ()=>{
 		test('Resolve 123456789', ()=>{
 			let accountScanToResolve = FIXTURE_ACCOUNT_123456789
 
@@ -158,7 +158,7 @@ describe('AccountFileReader', ()=>{
 
 	})
 
-	describe('Should parse the account number from a scanned file', ()=>{
+	describe('ParseScannedFile should parse the account number from a scanned file', ()=>{
 		let originalLog = console.log
 		beforeEach(() => {
 			console.log = jasmine.createSpy('log')
@@ -168,7 +168,7 @@ describe('AccountFileReader', ()=>{
 			console.log = originalLog
 		})
 
-		test('Parse fixture file', ()=>{
+		test('Parse account number file file and print account number to console', ()=>{
 			let accountFile = './test/fixtures/dummy_accounts_file.txt'
 
 			subject.parseScannedFile(accountFile)
