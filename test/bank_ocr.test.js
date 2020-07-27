@@ -36,7 +36,7 @@ describe('BankOCR', ()=>{
 
 		test('Should print invalid if the given account number is invalid', ()=> {
 			let subject = new BankOCR()
-			let invalidAccountNumber = 664371495
+			let invalidAccountNumber = '664371495'
 
 			subject.validateAccountNumber({accountNumber: invalidAccountNumber})
 
@@ -45,11 +45,19 @@ describe('BankOCR', ()=>{
 
 		test('Should print valid if the given account number is valid', ()=> {
 			let subject = new BankOCR()
-			let invalidAccountNumber = 457508000
+			let invalidAccountNumber = '457508000'
 
 			subject.validateAccountNumber({accountNumber: invalidAccountNumber})
 
 			expect(console.log).toHaveBeenCalledWith('valid')
+		})
+
+		//Since account number can start with zeros we cannot let yargs convert to number
+		//or the prefixing zeros will be trimmed
+		test('Should thrown when a non string number is passed', ()=>{
+			let accountNumber = 100000051
+
+			expect(()=>{subject.validateAccountNumber({accountNumber: accountNumber})}).toThrow()
 		})
 	})
 })
