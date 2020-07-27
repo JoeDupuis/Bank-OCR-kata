@@ -1,4 +1,5 @@
 import {FIXTURE_ACCOUNT_000000000, FIXTURE_ACCOUNT_123456789} from './fixtures/dummy_account_numbers'
+import {FIXTURE_ACCOUNT_49006771X} from './fixtures/invalid_dummy_account_numbers'
 import {
 	FIXTURE_DIGIT_0,
 	FIXTURE_DIGIT_1,
@@ -163,6 +164,14 @@ describe('AccountFileReader', ()=>{
 			let digits = subject.resolveDigits(accountScanToResolve)
 
 			expect(digits).toStrictEqual([0,0,0,0,0,0,0,0,0])
+		})
+
+		test('Resolve 49006771?', ()=>{
+			let accountScanToResolve = FIXTURE_ACCOUNT_49006771X
+
+			let digits = subject.resolveDigits(accountScanToResolve)
+
+			expect(digits).toStrictEqual([4,9,0,0,6,7,7,1,'?'])
 		})
 
 	})
