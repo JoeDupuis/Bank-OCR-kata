@@ -138,4 +138,23 @@ describe('AccountFileReader', ()=>{
 		})
 
 	})
+
+	describe('Should resolve scanned account number to an array of digit', ()=>{
+		test('Resolve 123456789', ()=>{
+			let accountScanToResolve = FIXTURE_ACCOUNT_123456789
+
+			let digits = subject.resolveDigits(accountScanToResolve)
+
+			expect(digits).toStrictEqual([1,2,3,4,5,6,7,8,9])
+		})
+
+		test('Resolve 000000000', ()=>{
+			let accountScanToResolve = FIXTURE_ACCOUNT_000000000
+
+			let digits = subject.resolveDigits(accountScanToResolve)
+
+			expect(digits).toStrictEqual([0,0,0,0,0,0,0,0,0])
+		})
+
+	})
 })
