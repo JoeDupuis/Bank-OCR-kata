@@ -38,15 +38,20 @@
 				"error",
 				2
 			],
-			"camelcase":  [
+			"camelcase": [
 				"error",
-				{ "properties": "always" }
+				{
+					"properties": "always"
+				}
 			],
 			"eqeqeq": [
 				"error",
 				"always"
 			],
-			"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+			"no-mixed-spaces-and-tabs": [
+				"error",
+				"smart-tabs"
+			],
 			"indent": [
 				"error",
 				"tab",
@@ -65,5 +70,6 @@
 		}
 	},
 	"dependencies": {
+		"n-readlines": "^1.0.0"
 	}
 }
