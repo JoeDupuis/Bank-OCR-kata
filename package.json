@@ -38,6 +38,10 @@
 				"error",
 				2
 			],
+			"camelcase":  [
+				"error",
+				{ "properties": "always" }
+			],
 			"eqeqeq": [
 				"error",
 				"always"

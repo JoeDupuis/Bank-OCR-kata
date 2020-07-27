@@ -18,8 +18,8 @@ describe('AccountFileReader', ()=>{
 	let subject = new AccountFileReader()
 	describe('Should split account number in sepaparate digit string', ()=>{
 		test('Split account 123456789', ()=>{
-			let account_scan_to_split = FIXTURE_ACCOUNT_123456789
-			let digits = subject.splitAccountScanToDigitString(account_scan_to_split)
+			let accountScanToSplit = FIXTURE_ACCOUNT_123456789
+			let digits = subject.splitAccountScanToDigitString(accountScanToSplit)
 
 			expect(digits[0]).toBe(FIXTURE_DIGIT_1)
 			expect(digits[1]).toBe(FIXTURE_DIGIT_2)
@@ -33,8 +33,8 @@ describe('AccountFileReader', ()=>{
 		})
 
 		test('Split account 000000000', ()=>{
-			let account_scan_to_split = FIXTURE_ACCOUNT_000000000
-			let digits = subject.splitAccountScanToDigitString(account_scan_to_split)
+			let accountScanToSplit = FIXTURE_ACCOUNT_000000000
+			let digits = subject.splitAccountScanToDigitString(accountScanToSplit)
 
 			expect(digits[0]).toBe(FIXTURE_DIGIT_0)
 			expect(digits[1]).toBe(FIXTURE_DIGIT_0)
