@@ -11,7 +11,7 @@
 	"scripts": {
 		"start": "node bottle.js",
 		"build": "babel lib --out-dir build/lib",
-		"lint": "eslint lib test bottle.js",
+		"lint": "eslint lib test bankocr",
 		"test": "jest"
 	},
 	"jest": {
