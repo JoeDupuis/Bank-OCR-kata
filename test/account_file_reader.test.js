@@ -15,11 +15,10 @@ import {
 import {AccountFileReader} from '../lib/account_file_reader'
 
 describe('AccountFileReader', ()=>{
+	let subject = new AccountFileReader()
 	describe('Should split account number in sepaparate digit string', ()=>{
 		test('Split account 123456789', ()=>{
-			let subject = new AccountFileReader()
 			let account_scan_to_split = FIXTURE_ACCOUNT_123456789
-
 			let digits = subject.splitAccountScanToDigitString(account_scan_to_split)
 
 			expect(digits[0]).toBe(FIXTURE_DIGIT_1)
@@ -34,9 +33,7 @@ describe('AccountFileReader', ()=>{
 		})
 
 		test('Split account 000000000', ()=>{
-			let subject = new AccountFileReader()
 			let account_scan_to_split = FIXTURE_ACCOUNT_000000000
-
 			let digits = subject.splitAccountScanToDigitString(account_scan_to_split)
 
 			expect(digits[0]).toBe(FIXTURE_DIGIT_0)
