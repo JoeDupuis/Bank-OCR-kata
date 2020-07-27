@@ -50,7 +50,7 @@ describe('AccountFileReader', ()=>{
 		})
 	})
 
-	describe('Should resolve scanned digit to a number', ()=>{
+	describe('Should resolve scanned digit to an integer', ()=>{
 		test('Resolve 0', ()=>{
 			let digitToResolve = FIXTURE_DIGIT_0
 
