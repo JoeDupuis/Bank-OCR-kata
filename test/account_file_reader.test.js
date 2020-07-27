@@ -186,7 +186,8 @@ describe('AccountFileReader', ()=>{
 			console.log = originalLog
 		})
 
-		test('Parse account number file file and print account number to console', ()=>{
+
+		test('Parse account number file and print account number to console', ()=>{
 			let accountFile = './test/fixtures/dummy_accounts_file.txt'
 
 			subject.parseScannedFile(accountFile)
