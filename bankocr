@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
 
-const BankOCR = require('./build/lib/bank_ocr')["default"];
+const BankOCR = require('./build/lib/bank_ocr')['default']
 let ocr = new BankOCR()
 ocr.run()

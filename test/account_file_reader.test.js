@@ -161,7 +161,7 @@ describe('AccountFileReader', ()=>{
 	describe('Should parse the account number from a scanned file', ()=>{
 		let originalLog = console.log
 		beforeEach(() => {
-			console.log = jasmine.createSpy("log")
+			console.log = jasmine.createSpy('log')
 		})
 
 		afterEach(() => {
