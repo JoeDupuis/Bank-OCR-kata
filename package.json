@@ -11,7 +11,7 @@
 	"scripts": {
 		"start": "node bottle.js",
 		"build": "babel lib --out-dir build/lib",
-		"lint": "eslint lib test bottle.js",
+		"lint": "eslint lib test bankocr",
 		"test": "jest"
 	},
 	"jest": {
@@ -38,9 +38,19 @@
 				"error",
 				2
 			],
+			"camelcase": [
+				"error",
+				{
+					"properties": "always"
+				}
+			],
 			"eqeqeq": [
 				"error",
 				"always"
+			],
+			"no-mixed-spaces-and-tabs": [
+				"error",
+				"smart-tabs"
 			],
 			"indent": [
 				"error",
@@ -60,5 +70,6 @@
 		}
 	},
 	"dependencies": {
+		"n-readlines": "^1.0.0"
 	}
 }
