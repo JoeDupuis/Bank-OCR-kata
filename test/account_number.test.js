@@ -28,7 +28,7 @@ describe('AccountNumber', ()=>{
 			expect(result).toBe('00000000?	ILL')		})
 	})
 
-	describe('Redable', ()=>{
+	describe('Readable', ()=>{
 		test('Should return true if all the digit are integers', ()=>{
 			let subject = AccountNumber.fromString('123456789')
 
