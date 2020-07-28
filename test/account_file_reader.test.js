@@ -176,46 +176,38 @@ describe('AccountFileReader', ()=>{
 
 	})
 
-	describe('ParseScannedFile should parse the account number from a scanned file', ()=>{
-		let originalLog = console.log
-		beforeEach(() => {
-			console.log = jasmine.createSpy('log')
-		})
-
-		afterEach(() => {
-			console.log = originalLog
-		})
-
-
+	describe('ParseScannedFile should parse the account number from a scanned file and pass them to the given callback', ()=>{
 		test('Parse account number file and print account number to console', ()=>{
 			let accountFile = './test/fixtures/dummy_accounts_file.txt'
+			let fakeCallback = jasmine.createSpy('fakeCallback')
 
-			subject.parseScannedFile(accountFile)
+			subject.parseScannedFile(accountFile, fakeCallback)
 
-			expect(console.log.calls.argsFor(0)[0]).toContain( '000000000')
-			expect(console.log.calls.argsFor(1)[0]).toContain( '111111111')
-			expect(console.log.calls.argsFor(2)[0]).toContain( '222222222')
-			expect(console.log.calls.argsFor(3)[0]).toContain( '333333333')
-			expect(console.log.calls.argsFor(4)[0]).toContain( '444444444')
-			expect(console.log.calls.argsFor(5)[0]).toContain( '555555555')
-			expect(console.log.calls.argsFor(6)[0]).toContain( '666666666')
-			expect(console.log.calls.argsFor(7)[0]).toContain( '777777777')
-			expect(console.log.calls.argsFor(8)[0]).toContain( '888888888')
-			expect(console.log.calls.argsFor(9)[0]).toContain( '999999999')
-			expect(console.log.calls.argsFor(10)[0]).toContain('123456789')
+			expect(fakeCallback.calls.argsFor(0)[0]).toContain( '000000000')
+			expect(fakeCallback.calls.argsFor(1)[0]).toContain( '111111111')
+			expect(fakeCallback.calls.argsFor(2)[0]).toContain( '222222222')
+			expect(fakeCallback.calls.argsFor(3)[0]).toContain( '333333333')
+			expect(fakeCallback.calls.argsFor(4)[0]).toContain( '444444444')
+			expect(fakeCallback.calls.argsFor(5)[0]).toContain( '555555555')
+			expect(fakeCallback.calls.argsFor(6)[0]).toContain( '666666666')
+			expect(fakeCallback.calls.argsFor(7)[0]).toContain( '777777777')
+			expect(fakeCallback.calls.argsFor(8)[0]).toContain( '888888888')
+			expect(fakeCallback.calls.argsFor(9)[0]).toContain( '999999999')
+			expect(fakeCallback.calls.argsFor(10)[0]).toContain('123456789')
 		})
 
 
 		test('Print the account number validity status next to the account number', ()=>{
 			let accountFile = './test/fixtures/validation_dummy_account_file.txt'
+			let fakeCallback = jasmine.createSpy('fakeCallback')
 
-			subject.parseScannedFile(accountFile)
+			subject.parseScannedFile(accountFile, fakeCallback)
 
-			expect(console.log.calls.argsFor(0)[0]).toBe( '711111111') //valid
-			expect(console.log.calls.argsFor(1)[0]).toBe( '777777177') //valid
-			expect(console.log.calls.argsFor(2)[0]).toBe( '100000051	ERR') //invalid
-			expect(console.log.calls.argsFor(3)[0]).toBe( '49006771?	ILL') //unreadable
-			expect(console.log.calls.argsFor(4)[0]).toBe( '1234?678?	ILL') //unreadable
+			expect(fakeCallback.calls.argsFor(0)[0]).toBe( '711111111') //valid
+			expect(fakeCallback.calls.argsFor(1)[0]).toBe( '777777177') //valid
+			expect(fakeCallback.calls.argsFor(2)[0]).toBe( '100000051	ERR') //invalid
+			expect(fakeCallback.calls.argsFor(3)[0]).toBe( '49006771?	ILL') //unreadable
+			expect(fakeCallback.calls.argsFor(4)[0]).toBe( '1234?678?	ILL') //unreadable
 		})
 	})
 
