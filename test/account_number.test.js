@@ -24,7 +24,25 @@ describe('AccountNumber', ()=>{
 
 			let result = subject.toString()
 
-			expect(result).toBe('00000000?	ILL')
+
+			expect(result).toBe('00000000?	ILL')		})
+	})
+
+	describe('Redable', ()=>{
+		test('Should return true if all the digit are integers', ()=>{
+			let subject = AccountNumber.fromString('123456789')
+
+			let result = subject.readable
+
+			expect(result).toBe(true)
+		})
+
+		test('Should return false if any digit is not an integer', ()=>{
+			let subject = AccountNumber.fromString('12345678A')
+
+			let result = subject.readable
+
+			expect(result).toBe(false)
 		})
 	})
 })
