@@ -17,9 +17,11 @@ describe('BankOCR', ()=>{
 			let subject = new BankOCR(fakeAccountFileReader)
 			let accountFile = './test/fixtures/dummy_accounts_file.txt'
 
-			subject.parseAccountFile({filename: accountFile})
+			subject.parseAccountFile({inputFilename: accountFile})
 
-			expect(fakeAccountFileReader.parseScannedFile).toHaveBeenCalledWith(accountFile)
+			expect(fakeAccountFileReader.parseScannedFile).toHaveBeenCalled()
+			//Make sure the first argument was the account file name
+			expect(fakeAccountFileReader.parseScannedFile.calls.argsFor(0)[0]).toEqual(accountFile)
 		})
 
 	})
