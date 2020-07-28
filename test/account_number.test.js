@@ -74,6 +74,34 @@ describe('AccountNumber', ()=>{
 
 			expect(result).toBe(false)
 		})
+	})
 
+	describe('StatusString', ()=>{
+		test('Should return an empty string if account is valid', ()=>{
+			let validAccount = '000000051'
+			let subject = AccountNumber.fromString(validAccount)
+
+			let result = subject.statusString
+
+			expect(result).toBe('')
+		})
+
+		test('Should return ERR if account is invalid', ()=>{
+			let invalidAccount = '100000051'
+			let subject = AccountNumber.fromString(invalidAccount)
+
+			let result = subject.statusString
+
+			expect(result).toBe('ERR')
+		})
+
+		test('Should return ILL if the account number is unreadable', ()=>{
+			let unreadableAccountNumber = '12345678A'
+			let subject = AccountNumber.fromString(unreadableAccountNumber)
+
+			let result = subject.statusString
+
+			expect(result).toBe('ILL')
+		})
 	})
 })
