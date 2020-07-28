@@ -1,4 +1,5 @@
 import {FIXTURE_ACCOUNT_000000000, FIXTURE_ACCOUNT_123456789} from './fixtures/dummy_account_numbers'
+import {FIXTURE_ACCOUNT_49006771X} from './fixtures/invalid_dummy_account_numbers'
 import {
 	FIXTURE_DIGIT_0,
 	FIXTURE_DIGIT_1,
@@ -9,7 +10,8 @@ import {
 	FIXTURE_DIGIT_6,
 	FIXTURE_DIGIT_7,
 	FIXTURE_DIGIT_8,
-	FIXTURE_DIGIT_9
+	FIXTURE_DIGIT_9,
+	FIXTURE_BROKEN_DIGIT
 } from './fixtures/digits'
 
 import {AccountFileReader} from '../lib/account_file_reader'
@@ -50,7 +52,7 @@ describe('AccountFileReader', ()=>{
 		})
 	})
 
-	describe('ResolveDigit should resolve scanned digit to an integer', ()=>{
+	describe('ResolveDigit should resolve scanned digit to an integer or missing character symbol', ()=>{
 		test('Resolve 0', ()=>{
 			let digitToResolve = FIXTURE_DIGIT_0
 
@@ -137,6 +139,14 @@ describe('AccountFileReader', ()=>{
 			expect(digit).toBe(9)
 		})
 
+		test('Resolve broken digit', ()=>{
+			let digitToResolve = FIXTURE_BROKEN_DIGIT
+
+			let digit = subject.resolveDigit(digitToResolve)
+
+			expect(digit).toBe('?')
+		})
+
 	})
 
 	describe('ResolveDigits should resolve scanned account number to an array of digit', ()=>{
@@ -156,36 +166,51 @@ describe('AccountFileReader', ()=>{
 			expect(digits).toStrictEqual([0,0,0,0,0,0,0,0,0])
 		})
 
+		test('Resolve 49006771?', ()=>{
+			let accountScanToResolve = FIXTURE_ACCOUNT_49006771X
+
+			let digits = subject.resolveDigits(accountScanToResolve)
+
+			expect(digits).toStrictEqual([4,9,0,0,6,7,7,1,'?'])
+		})
+
 	})
 
-	describe('ParseScannedFile should parse the account number from a scanned file', ()=>{
-		let originalLog = console.log
-		beforeEach(() => {
-			console.log = jasmine.createSpy('log')
-		})
-
-		afterEach(() => {
-			console.log = originalLog
-		})
-
-		test('Parse account number file file and print account number to console', ()=>{
+	describe('ParseScannedFile should parse the account number from a scanned file and pass them to the given callback', ()=>{
+		test('Parse account number file and print account number to console', ()=>{
 			let accountFile = './test/fixtures/dummy_accounts_file.txt'
+			let fakeCallback = jasmine.createSpy('fakeCallback')
 
-			subject.parseScannedFile(accountFile)
+			subject.parseScannedFile(accountFile, fakeCallback)
 
-			expect(console.log.calls.argsFor(0)[0]).toEqual( '000000000')
-			expect(console.log.calls.argsFor(1)[0]).toEqual( '111111111')
-			expect(console.log.calls.argsFor(2)[0]).toEqual( '222222222')
-			expect(console.log.calls.argsFor(3)[0]).toEqual( '333333333')
-			expect(console.log.calls.argsFor(4)[0]).toEqual( '444444444')
-			expect(console.log.calls.argsFor(5)[0]).toEqual( '555555555')
-			expect(console.log.calls.argsFor(6)[0]).toEqual( '666666666')
-			expect(console.log.calls.argsFor(7)[0]).toEqual( '777777777')
-			expect(console.log.calls.argsFor(8)[0]).toEqual( '888888888')
-			expect(console.log.calls.argsFor(9)[0]).toEqual( '999999999')
-			expect(console.log.calls.argsFor(10)[0]).toEqual('123456789')
+			expect(fakeCallback).toHaveBeenCalledTimes(11)
+			expect(fakeCallback.calls.argsFor(0)[0]).toContain( '000000000')
+			expect(fakeCallback.calls.argsFor(1)[0]).toContain( '111111111')
+			expect(fakeCallback.calls.argsFor(2)[0]).toContain( '222222222')
+			expect(fakeCallback.calls.argsFor(3)[0]).toContain( '333333333')
+			expect(fakeCallback.calls.argsFor(4)[0]).toContain( '444444444')
+			expect(fakeCallback.calls.argsFor(5)[0]).toContain( '555555555')
+			expect(fakeCallback.calls.argsFor(6)[0]).toContain( '666666666')
+			expect(fakeCallback.calls.argsFor(7)[0]).toContain( '777777777')
+			expect(fakeCallback.calls.argsFor(8)[0]).toContain( '888888888')
+			expect(fakeCallback.calls.argsFor(9)[0]).toContain( '999999999')
+			expect(fakeCallback.calls.argsFor(10)[0]).toContain('123456789')
 		})
 
+
+		test('Print the account number validity status next to the account number', ()=>{
+			let accountFile = './test/fixtures/validation_dummy_account_file.txt'
+			let fakeCallback = jasmine.createSpy('fakeCallback')
+
+			subject.parseScannedFile(accountFile, fakeCallback)
+
+			expect(fakeCallback).toHaveBeenCalledTimes(5)
+			expect(fakeCallback.calls.argsFor(0)[0]).toBe( '711111111') //valid
+			expect(fakeCallback.calls.argsFor(1)[0]).toBe( '777777177') //valid
+			expect(fakeCallback.calls.argsFor(2)[0]).toBe( '100000051	ERR') //invalid
+			expect(fakeCallback.calls.argsFor(3)[0]).toBe( '49006771?	ILL') //unreadable
+			expect(fakeCallback.calls.argsFor(4)[0]).toBe( '1234?678?	ILL') //unreadable
+		})
 	})
 
 	describe('validateAccountNumberArray returns the validity of an account number array', ()=>{
