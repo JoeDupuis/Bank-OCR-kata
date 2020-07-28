@@ -183,6 +183,7 @@ describe('AccountFileReader', ()=>{
 
 			subject.parseScannedFile(accountFile, fakeCallback)
 
+			expect(fakeCallback).toHaveBeenCalledTimes(11)
 			expect(fakeCallback.calls.argsFor(0)[0]).toContain( '000000000')
 			expect(fakeCallback.calls.argsFor(1)[0]).toContain( '111111111')
 			expect(fakeCallback.calls.argsFor(2)[0]).toContain( '222222222')
@@ -203,6 +204,7 @@ describe('AccountFileReader', ()=>{
 
 			subject.parseScannedFile(accountFile, fakeCallback)
 
+			expect(fakeCallback).toHaveBeenCalledTimes(5)
 			expect(fakeCallback.calls.argsFor(0)[0]).toBe( '711111111') //valid
 			expect(fakeCallback.calls.argsFor(1)[0]).toBe( '777777177') //valid
 			expect(fakeCallback.calls.argsFor(2)[0]).toBe( '100000051	ERR') //invalid
