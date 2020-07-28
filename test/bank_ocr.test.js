@@ -54,7 +54,7 @@ describe('BankOCR', ()=>{
 
 		//Since account number can start with zeros we cannot let yargs convert to number
 		//or the prefixing zeros will be trimmed
-		test('Should thrown when a non string number is passed', ()=>{
+		test('Should throw when a non string number is passed', ()=>{
 			let accountNumber = 100000051
 
 			expect(()=>{subject.validateAccountNumber({accountNumber: accountNumber})}).toThrow()
