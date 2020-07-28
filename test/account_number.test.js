@@ -45,4 +45,35 @@ describe('AccountNumber', ()=>{
 			expect(result).toBe(false)
 		})
 	})
+
+
+	describe('valid', ()=>{
+		test('Should return true if the number pass the checksum', ()=>{
+			let validAccount = '000000051'
+			let subject = AccountNumber.fromString(validAccount)
+
+			let result = subject.valid
+
+			expect(result).toBe(true)
+		})
+
+		test('Should return false if the number pass the checksum', ()=>{
+			let invalidAccount = '100000051'
+			let subject = AccountNumber.fromString(invalidAccount)
+
+			let result = subject.valid
+
+			expect(result).toBe(false)
+		})
+
+		test('Should return false if the number is unreadable', ()=>{
+			let unreadableAccountNumber = '12345678A'
+			let subject = AccountNumber.fromString(unreadableAccountNumber)
+
+			let result = subject.valid
+
+			expect(result).toBe(false)
+		})
+
+	})
 })
