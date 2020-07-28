@@ -52,7 +52,7 @@ describe('AccountFileReader', ()=>{
 		})
 	})
 
-	describe('ResolveDigit should resolve scanned digit to an integer', ()=>{
+	describe('ResolveDigit should resolve scanned digit to an integer or missing character symbol', ()=>{
 		test('Resolve 0', ()=>{
 			let digitToResolve = FIXTURE_DIGIT_0
 
