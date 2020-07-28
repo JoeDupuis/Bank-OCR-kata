@@ -22,7 +22,7 @@ describe('AccountFileReader', ()=>{
 		test('Split account 123456789', ()=>{
 			let accountScanToSplit = FIXTURE_ACCOUNT_123456789
 
-			let digits = subject.splitAccountScanToDigitString(accountScanToSplit)
+			let digits = subject.splitAccountScanToDigitStrings(accountScanToSplit)
 
 			expect(digits[0]).toBe(FIXTURE_DIGIT_1)
 			expect(digits[1]).toBe(FIXTURE_DIGIT_2)
@@ -38,7 +38,7 @@ describe('AccountFileReader', ()=>{
 		test('Split account 000000000', ()=>{
 			let accountScanToSplit = FIXTURE_ACCOUNT_000000000
 
-			let digits = subject.splitAccountScanToDigitString(accountScanToSplit)
+			let digits = subject.splitAccountScanToDigitStrings(accountScanToSplit)
 
 			expect(digits[0]).toBe(FIXTURE_DIGIT_0)
 			expect(digits[1]).toBe(FIXTURE_DIGIT_0)
