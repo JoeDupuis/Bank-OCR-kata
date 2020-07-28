@@ -104,4 +104,32 @@ describe('AccountNumber', ()=>{
 			expect(result).toBe('ILL')
 		})
 	})
+
+	describe('Digit', ()=>{
+		test('Should return the digit at the given index', ()=>{
+			let meaninglessAccountNumber = '321456987'
+			let subject = AccountNumber.fromString(meaninglessAccountNumber)
+
+			let digit0 = subject.digit(0)
+			let digit1 = subject.digit(1)
+			let digit2 = subject.digit(2)
+			let digit3 = subject.digit(3)
+			let digit4 = subject.digit(4)
+			let digit5 = subject.digit(5)
+			let digit6 = subject.digit(6)
+			let digit7 = subject.digit(7)
+			let digit8 = subject.digit(8)
+
+			expect(digit0).toBe(3)
+			expect(digit1).toBe(2)
+			expect(digit2).toBe(1)
+			expect(digit3).toBe(4)
+			expect(digit4).toBe(5)
+			expect(digit5).toBe(6)
+			expect(digit6).toBe(9)
+			expect(digit7).toBe(8)
+			expect(digit8).toBe(7)
+		})
+
+	})
 })
