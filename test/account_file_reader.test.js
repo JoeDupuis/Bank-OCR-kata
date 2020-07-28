@@ -211,11 +211,11 @@ describe('AccountFileReader', ()=>{
 
 			subject.parseScannedFile(accountFile)
 
-			expect(console.log.calls.argsFor(0)[0]).toBe( '711111111')
-			expect(console.log.calls.argsFor(1)[0]).toBe( '777777177')
-			expect(console.log.calls.argsFor(2)[0]).toBe( '100000051	ERR')
-			expect(console.log.calls.argsFor(3)[0]).toContain( '49006771?	ILL')
-			expect(console.log.calls.argsFor(4)[0]).toContain( '1234?678?	ILL')
+			expect(console.log.calls.argsFor(0)[0]).toBe( '711111111') //valid
+			expect(console.log.calls.argsFor(1)[0]).toBe( '777777177') //valid
+			expect(console.log.calls.argsFor(2)[0]).toBe( '100000051	ERR') //invalid
+			expect(console.log.calls.argsFor(3)[0]).toBe( '49006771?	ILL') //unreadable
+			expect(console.log.calls.argsFor(4)[0]).toBe( '1234?678?	ILL') //unreadable
 		})
 	})
 
