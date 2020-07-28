@@ -130,6 +130,5 @@ describe('AccountNumber', ()=>{
 			expect(digit7).toBe(8)
 			expect(digit8).toBe(7)
 		})
-
 	})
 })
