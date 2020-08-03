@@ -11,7 +11,6 @@ import {
 	FIXTURE_DIGIT_7,
 	FIXTURE_DIGIT_8,
 	FIXTURE_DIGIT_9,
-	FIXTURE_BROKEN_DIGIT
 } from './fixtures/digits'
 
 import {AccountFileReader} from '../lib/account_file_reader'
@@ -52,101 +51,11 @@ describe('AccountFileReader', ()=>{
 		})
 	})
 
-	describe('ResolveDigit should resolve scanned digit to an integer or missing character symbol', ()=>{
-		test('Resolve broken digit', ()=>{
-			let digitToResolve = FIXTURE_BROKEN_DIGIT
-
-			let digit = subject.resolveDigit(digitToResolve)
-
-			expect(digit).toBe('?')
-		})
-
-		test('Resolve 0', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_0
-
-			let digit = subject.resolveDigit(digitToResolve)
-
-			expect(digit).toBe(0)
-		})
-
-		test('Resolve 1', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_1
-
-			let digit = subject.resolveDigit(digitToResolve)
-
-			expect(digit).toBe(1)
-		})
-
-		test('Resolve 2', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_2
-
-			let digit = subject.resolveDigit(digitToResolve)
-
-			expect(digit).toBe(2)
-		})
-
-		test('Resolve 3', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_3
-
-			let digit = subject.resolveDigit(digitToResolve)
-
-			expect(digit).toBe(3)
-		})
-
-		test('Resolve 4', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_4
-
-			let digit = subject.resolveDigit(digitToResolve)
-
-			expect(digit).toBe(4)
-		})
-
-		test('Resolve 5', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_5
-
-			let digit = subject.resolveDigit(digitToResolve)
-
-			expect(digit).toBe(5)
-		})
-
-		test('Resolve 6', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_6
-
-			let digit = subject.resolveDigit(digitToResolve)
-
-			expect(digit).toBe(6)
-		})
-
-		test('Resolve 7', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_7
-
-			let digit = subject.resolveDigit(digitToResolve)
-
-			expect(digit).toBe(7)
-		})
-
-		test('Resolve 8', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_8
-
-			let digit = subject.resolveDigit(digitToResolve)
-
-			expect(digit).toBe(8)
-		})
-
-		test('Resolve 9', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_9
-
-			let digit = subject.resolveDigit(digitToResolve)
-
-			expect(digit).toBe(9)
-		})
-	})
-
 	describe('ResolveDigits should resolve scanned account number to an array of digit', ()=>{
 		test('Resolve 123456789', ()=>{
 			let accountScanToResolve = FIXTURE_ACCOUNT_123456789
 
-			let digits = subject.resolveDigits(accountScanToResolve)
+			let digits = subject.resolveDigits(accountScanToResolve).map(digit => digit.digit)
 
 			expect(digits).toStrictEqual([1,2,3,4,5,6,7,8,9])
 		})
@@ -154,7 +63,7 @@ describe('AccountFileReader', ()=>{
 		test('Resolve 000000000', ()=>{
 			let accountScanToResolve = FIXTURE_ACCOUNT_000000000
 
-			let digits = subject.resolveDigits(accountScanToResolve)
+			let digits = subject.resolveDigits(accountScanToResolve).map(digit => digit.digit)
 
 			expect(digits).toStrictEqual([0,0,0,0,0,0,0,0,0])
 		})
@@ -162,9 +71,9 @@ describe('AccountFileReader', ()=>{
 		test('Resolve 49006771?', ()=>{
 			let accountScanToResolve = FIXTURE_ACCOUNT_49006771X
 
-			let digits = subject.resolveDigits(accountScanToResolve)
+			let digits = subject.resolveDigits(accountScanToResolve).map(digit => digit.digit)
 
-			expect(digits).toStrictEqual([4,9,0,0,6,7,7,1,'?'])
+			expect(digits).toStrictEqual([4,9,0,0,6,7,7,1,NaN])
 		})
 
 	})
