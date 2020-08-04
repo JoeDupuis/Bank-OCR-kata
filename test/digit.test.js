@@ -1,20 +1,4 @@
-import {
-	FIXTURE_DIGIT_0,
-	FIXTURE_DIGIT_1,
-	FIXTURE_DIGIT_2,
-	FIXTURE_DIGIT_3,
-	FIXTURE_DIGIT_4,
-	FIXTURE_DIGIT_5,
-	FIXTURE_DIGIT_6,
-	FIXTURE_DIGIT_7,
-	FIXTURE_DIGIT_8,
-	FIXTURE_DIGIT_9,
-	FIXTURE_DIGIT_1_SUPERFLUOUS,
-	FIXTURE_DIGIT_5_MISSING,
-	FIXTURE_BROKEN_DIGIT
-} from './fixtures/digits'
 import {Digit} from '../lib/digit'
-
 
 describe('Digit', ()=>{
 	describe('Constructor', ()=>{

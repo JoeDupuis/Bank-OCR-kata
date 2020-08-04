@@ -1,4 +1,6 @@
 import {AccountNumber} from '../lib/account_number'
+import {Digit} from '../lib/digit'
+
 describe('AccountNumber', ()=>{
 	describe('ToString', ()=>{
 		test('Should return just the account number if valid', ()=>{
@@ -25,7 +27,8 @@ describe('AccountNumber', ()=>{
 			const result = subject.toString()
 
 
-			expect(result).toBe('00000000?	ILL')		})
+			expect(result).toBe('00000000?	ILL')
+		})
 	})
 
 	describe('Readable', ()=>{
@@ -148,6 +151,25 @@ describe('AccountNumber', ()=>{
 			expect(digit6).toBe(9)
 			expect(digit7).toBe(8)
 			expect(digit8).toBe(7)
+		})
+	})
+
+	describe('OtherPossibleAccountNumbers', ()=>{
+		test('Returns list of other possible account number when changing only one segment', ()=>{
+			const subject = new AccountNumber([new Digit(8, [0,6,9]),
+											   new Digit(8, [0,6,9]),
+											   new Digit(8, [0,6,9]),
+											   new Digit(8, [0,6,9]),
+											   new Digit(8, [0,6,9]),
+											   new Digit(8, [0,6,9]),
+											   new Digit(8, [0,6,9]),
+											   new Digit(8, [0,6,9]),
+											   new Digit(8, [0,6,9])])
+
+			const result = subject.otherPossibleAccountNumbers()
+				  .map(accountNumber => accountNumber.toString())
+
+			expect(result).toStrictEqual(['888886888', '888888988', '888888880'])
 		})
 	})
 })
