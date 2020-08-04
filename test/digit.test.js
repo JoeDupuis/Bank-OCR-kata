@@ -34,12 +34,12 @@ describe('Digit', ()=>{
 			expect(result).toBe(false)
 		})
 	})
-	describe('ResolveDigit should return the integer matching the scan passed to the constructor', ()=>{
+	describe('FromDigitScan', ()=>{
 		test('Resolving broken digit should return NaN', ()=>{
 			const digitToResolve = FIXTURE_BROKEN_DIGIT
 			const subject = Digit.fromDigitScan(digitToResolve)
 
-			const digit = subject.resolveDigit()
+			const digit = subject.digit
 
 			expect(Number.isNaN(digit)).toBe(true)
 		})
@@ -48,7 +48,7 @@ describe('Digit', ()=>{
 			const digitToResolve = FIXTURE_DIGIT_0
 			const subject = Digit.fromDigitScan(digitToResolve)
 
-			const digit = subject.resolveDigit()
+			const digit = subject.digit
 
 			expect(digit).toBe(0)
 		})
@@ -57,7 +57,7 @@ describe('Digit', ()=>{
 			const digitToResolve = FIXTURE_DIGIT_1
 			const subject = Digit.fromDigitScan(digitToResolve)
 
-			const digit = subject.resolveDigit()
+			const digit = subject.digit
 
 			expect(digit).toBe(1)
 		})
@@ -66,7 +66,7 @@ describe('Digit', ()=>{
 			const digitToResolve = FIXTURE_DIGIT_2
 			const subject = Digit.fromDigitScan(digitToResolve)
 
-			const digit = subject.resolveDigit()
+			const digit = subject.digit
 
 			expect(digit).toBe(2)
 		})
@@ -75,7 +75,7 @@ describe('Digit', ()=>{
 			const digitToResolve = FIXTURE_DIGIT_3
 			const subject = Digit.fromDigitScan(digitToResolve)
 
-			const digit = subject.resolveDigit()
+			const digit = subject.digit
 
 			expect(digit).toBe(3)
 		})
@@ -84,7 +84,7 @@ describe('Digit', ()=>{
 			const digitToResolve = FIXTURE_DIGIT_4
 			const subject = Digit.fromDigitScan(digitToResolve)
 
-			const digit = subject.resolveDigit()
+			const digit = subject.digit
 
 			expect(digit).toBe(4)
 		})
@@ -93,7 +93,7 @@ describe('Digit', ()=>{
 			const digitToResolve = FIXTURE_DIGIT_5
 			const subject = Digit.fromDigitScan(digitToResolve)
 
-			const digit = subject.resolveDigit()
+			const digit = subject.digit
 
 			expect(digit).toBe(5)
 		})
@@ -102,7 +102,7 @@ describe('Digit', ()=>{
 			const digitToResolve = FIXTURE_DIGIT_6
 			const subject = Digit.fromDigitScan(digitToResolve)
 
-			const digit = subject.resolveDigit()
+			const digit = subject.digit
 
 			expect(digit).toBe(6)
 		})
@@ -111,7 +111,7 @@ describe('Digit', ()=>{
 			const digitToResolve = FIXTURE_DIGIT_7
 			const subject = Digit.fromDigitScan(digitToResolve)
 
-			const digit = subject.resolveDigit()
+			const digit = subject.digit
 
 			expect(digit).toBe(7)
 		})
@@ -120,7 +120,7 @@ describe('Digit', ()=>{
 			const digitToResolve = FIXTURE_DIGIT_8
 			const subject = Digit.fromDigitScan(digitToResolve)
 
-			const digit = subject.resolveDigit()
+			const digit = subject.digit
 
 			expect(digit).toBe(8)
 		})
@@ -129,7 +129,7 @@ describe('Digit', ()=>{
 			const digitToResolve = FIXTURE_DIGIT_9
 			const subject = Digit.fromDigitScan(digitToResolve)
 
-			const digit = subject.resolveDigit()
+			const digit = subject.digit
 
 			expect(digit).toBe(9)
 		})
