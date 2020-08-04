@@ -9,6 +9,8 @@ import {
 	FIXTURE_DIGIT_7,
 	FIXTURE_DIGIT_8,
 	FIXTURE_DIGIT_9,
+	FIXTURE_DIGIT_1_SUPERFLUOUS,
+	FIXTURE_DIGIT_5_MISSING,
 	FIXTURE_BROKEN_DIGIT
 } from './fixtures/digits'
 import {Digit} from '../lib/digit'
@@ -40,7 +42,7 @@ describe('Digit', ()=>{
 			const segment1 = Digit.parseToSegments(FIXTURE_DIGIT_3)
 			const segment2 = Digit.parseToSegments(FIXTURE_DIGIT_8)
 
-			let result = Digit.segmentDiffCount(segment1, segment2)
+			const result = Digit.segmentDiffCount(segment1, segment2)
 
 			expect(result).toBe(2)
 		})
@@ -49,7 +51,7 @@ describe('Digit', ()=>{
 			const segment1 = Digit.parseToSegments(FIXTURE_DIGIT_1)
 			const segment2 = Digit.parseToSegments(FIXTURE_DIGIT_7)
 
-			let result = Digit.segmentDiffCount(segment1, segment2)
+			const result = Digit.segmentDiffCount(segment1, segment2)
 
 			expect(result).toBe(1)
 		})
@@ -64,6 +66,24 @@ describe('Digit', ()=>{
 			const digit = subject.digit
 
 			expect(Number.isNaN(digit)).toBe(true)
+		})
+
+		test('Should try to resolve digit when only one segment is missing', ()=>{
+			const digitToResolve = FIXTURE_DIGIT_5_MISSING
+			const subject = Digit.fromDigitScan(digitToResolve)
+
+			const digit = subject.digit
+
+			expect(digit).toBe(5)
+		})
+
+		test('Should try to resolve digit when only one segment is superfluous', ()=>{
+			const digitToResolve = FIXTURE_DIGIT_1_SUPERFLUOUS
+			const subject = Digit.fromDigitScan(digitToResolve)
+
+			const digit = subject.digit
+
+			expect(digit).toBe(1)
 		})
 
 		test('Resolve 0', ()=>{
