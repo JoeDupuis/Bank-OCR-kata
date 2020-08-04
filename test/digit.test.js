@@ -36,100 +36,100 @@ describe('Digit', ()=>{
 	})
 	describe('ResolveDigit should return the integer matching the scan passed to the constructor', ()=>{
 		test('Resolving broken digit should return NaN', ()=>{
-			let digitToResolve = FIXTURE_BROKEN_DIGIT
-			let subject = Digit.fromDigitScan(digitToResolve)
+			const digitToResolve = FIXTURE_BROKEN_DIGIT
+			const subject = Digit.fromDigitScan(digitToResolve)
 
-			let digit = subject.resolveDigit()
+			const digit = subject.resolveDigit()
 
 			expect(Number.isNaN(digit)).toBe(true)
 		})
 
 		test('Resolve 0', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_0
-			let subject = Digit.fromDigitScan(digitToResolve)
+			const digitToResolve = FIXTURE_DIGIT_0
+			const subject = Digit.fromDigitScan(digitToResolve)
 
-			let digit = subject.resolveDigit()
+			const digit = subject.resolveDigit()
 
 			expect(digit).toBe(0)
 		})
 
 		test('Resolve 1', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_1
-			let subject = Digit.fromDigitScan(digitToResolve)
+			const digitToResolve = FIXTURE_DIGIT_1
+			const subject = Digit.fromDigitScan(digitToResolve)
 
-			let digit = subject.resolveDigit()
+			const digit = subject.resolveDigit()
 
 			expect(digit).toBe(1)
 		})
 
 		test('Resolve 2', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_2
-			let subject = Digit.fromDigitScan(digitToResolve)
+			const digitToResolve = FIXTURE_DIGIT_2
+			const subject = Digit.fromDigitScan(digitToResolve)
 
-			let digit = subject.resolveDigit()
+			const digit = subject.resolveDigit()
 
 			expect(digit).toBe(2)
 		})
 
 		test('Resolve 3', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_3
-			let subject = Digit.fromDigitScan(digitToResolve)
+			const digitToResolve = FIXTURE_DIGIT_3
+			const subject = Digit.fromDigitScan(digitToResolve)
 
-			let digit = subject.resolveDigit()
+			const digit = subject.resolveDigit()
 
 			expect(digit).toBe(3)
 		})
 
 		test('Resolve 4', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_4
-			let subject = Digit.fromDigitScan(digitToResolve)
+			const digitToResolve = FIXTURE_DIGIT_4
+			const subject = Digit.fromDigitScan(digitToResolve)
 
-			let digit = subject.resolveDigit()
+			const digit = subject.resolveDigit()
 
 			expect(digit).toBe(4)
 		})
 
 		test('Resolve 5', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_5
-			let subject = Digit.fromDigitScan(digitToResolve)
+			const digitToResolve = FIXTURE_DIGIT_5
+			const subject = Digit.fromDigitScan(digitToResolve)
 
-			let digit = subject.resolveDigit()
+			const digit = subject.resolveDigit()
 
 			expect(digit).toBe(5)
 		})
 
 		test('Resolve 6', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_6
-			let subject = Digit.fromDigitScan(digitToResolve)
+			const digitToResolve = FIXTURE_DIGIT_6
+			const subject = Digit.fromDigitScan(digitToResolve)
 
-			let digit = subject.resolveDigit()
+			const digit = subject.resolveDigit()
 
 			expect(digit).toBe(6)
 		})
 
 		test('Resolve 7', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_7
-			let subject = Digit.fromDigitScan(digitToResolve)
+			const digitToResolve = FIXTURE_DIGIT_7
+			const subject = Digit.fromDigitScan(digitToResolve)
 
-			let digit = subject.resolveDigit()
+			const digit = subject.resolveDigit()
 
 			expect(digit).toBe(7)
 		})
 
 		test('Resolve 8', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_8
-			let subject = Digit.fromDigitScan(digitToResolve)
+			const digitToResolve = FIXTURE_DIGIT_8
+			const subject = Digit.fromDigitScan(digitToResolve)
 
-			let digit = subject.resolveDigit()
+			const digit = subject.resolveDigit()
 
 			expect(digit).toBe(8)
 		})
 
 		test('Resolve 9', ()=>{
-			let digitToResolve = FIXTURE_DIGIT_9
-			let subject = Digit.fromDigitScan(digitToResolve)
+			const digitToResolve = FIXTURE_DIGIT_9
+			const subject = Digit.fromDigitScan(digitToResolve)
 
-			let digit = subject.resolveDigit()
+			const digit = subject.resolveDigit()
 
 			expect(digit).toBe(9)
 		})

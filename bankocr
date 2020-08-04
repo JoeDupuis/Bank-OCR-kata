@@ -2,5 +2,5 @@
 
 
 const BankOCR = require('./build/lib/bank_ocr')['default']
-let ocr = new BankOCR()
+const ocr = new BankOCR()
 ocr.run()

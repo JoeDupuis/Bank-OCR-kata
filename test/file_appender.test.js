@@ -13,12 +13,12 @@ describe('FileAppender', ()=>{
 		})
 
 		test('Should append the given line at the of the file', ()=>{
-			let dummyFile = tmpfile.name
-			let subject = new FileAppender(dummyFile)
+			const dummyFile = tmpfile.name
+			const subject = new FileAppender(dummyFile)
 
 			subject.append('a test line')
 			subject.append('another test line')
-			let content = fs.readFileSync(dummyFile, 'utf8')
+			const content = fs.readFileSync(dummyFile, 'utf8')
 
 			expect(content).toBe('a test line\nanother test line')
 		})

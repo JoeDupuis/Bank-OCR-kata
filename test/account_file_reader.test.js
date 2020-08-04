@@ -16,12 +16,12 @@ import {
 import {AccountFileReader} from '../lib/account_file_reader'
 
 describe('AccountFileReader', ()=>{
-	let subject = new AccountFileReader()
+	const subject = new AccountFileReader()
 	describe('SplitAccountScanToDigitString should split account number in sepaparate digit string', ()=>{
 		test('Split account 123456789', ()=>{
-			let accountScanToSplit = FIXTURE_ACCOUNT_123456789
+			const accountScanToSplit = FIXTURE_ACCOUNT_123456789
 
-			let digits = subject.splitAccountScanToDigitStrings(accountScanToSplit)
+			const digits = subject.splitAccountScanToDigitStrings(accountScanToSplit)
 
 			expect(digits[0]).toBe(FIXTURE_DIGIT_1)
 			expect(digits[1]).toBe(FIXTURE_DIGIT_2)
@@ -35,9 +35,9 @@ describe('AccountFileReader', ()=>{
 		})
 
 		test('Split account 000000000', ()=>{
-			let accountScanToSplit = FIXTURE_ACCOUNT_000000000
+			const accountScanToSplit = FIXTURE_ACCOUNT_000000000
 
-			let digits = subject.splitAccountScanToDigitStrings(accountScanToSplit)
+			const digits = subject.splitAccountScanToDigitStrings(accountScanToSplit)
 
 			expect(digits[0]).toBe(FIXTURE_DIGIT_0)
 			expect(digits[1]).toBe(FIXTURE_DIGIT_0)
@@ -53,25 +53,25 @@ describe('AccountFileReader', ()=>{
 
 	describe('ResolveDigits should resolve scanned account number to an array of digit', ()=>{
 		test('Resolve 123456789', ()=>{
-			let accountScanToResolve = FIXTURE_ACCOUNT_123456789
+			const accountScanToResolve = FIXTURE_ACCOUNT_123456789
 
-			let digits = subject.resolveDigits(accountScanToResolve).map(digit => digit.digit)
+			const digits = subject.resolveDigits(accountScanToResolve).map(digit => digit.digit)
 
 			expect(digits).toStrictEqual([1,2,3,4,5,6,7,8,9])
 		})
 
 		test('Resolve 000000000', ()=>{
-			let accountScanToResolve = FIXTURE_ACCOUNT_000000000
+			const accountScanToResolve = FIXTURE_ACCOUNT_000000000
 
-			let digits = subject.resolveDigits(accountScanToResolve).map(digit => digit.digit)
+			const digits = subject.resolveDigits(accountScanToResolve).map(digit => digit.digit)
 
 			expect(digits).toStrictEqual([0,0,0,0,0,0,0,0,0])
 		})
 
 		test('Resolve 49006771?', ()=>{
-			let accountScanToResolve = FIXTURE_ACCOUNT_49006771X
+			const accountScanToResolve = FIXTURE_ACCOUNT_49006771X
 
-			let digits = subject.resolveDigits(accountScanToResolve).map(digit => digit.digit)
+			const digits = subject.resolveDigits(accountScanToResolve).map(digit => digit.digit)
 
 			expect(digits).toStrictEqual([4,9,0,0,6,7,7,1,NaN])
 		})
@@ -80,8 +80,8 @@ describe('AccountFileReader', ()=>{
 
 	describe('ParseScannedFile should parse the account number from a scanned file and pass them to the given callback', ()=>{
 		test('Parse account number file and print account number to console', ()=>{
-			let accountFile = './test/fixtures/dummy_accounts_file.txt'
-			let fakeCallback = jasmine.createSpy('fakeCallback')
+			const accountFile = './test/fixtures/dummy_accounts_file.txt'
+			const fakeCallback = jasmine.createSpy('fakeCallback')
 
 			subject.parseScannedFile(accountFile, fakeCallback)
 
@@ -101,8 +101,8 @@ describe('AccountFileReader', ()=>{
 
 
 		test('Print the account number validity status next to the account number', ()=>{
-			let accountFile = './test/fixtures/validation_dummy_account_file.txt'
-			let fakeCallback = jasmine.createSpy('fakeCallback')
+			const accountFile = './test/fixtures/validation_dummy_account_file.txt'
+			const fakeCallback = jasmine.createSpy('fakeCallback')
 
 			subject.parseScannedFile(accountFile, fakeCallback)
 
