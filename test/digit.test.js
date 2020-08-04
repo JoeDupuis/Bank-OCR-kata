@@ -34,6 +34,28 @@ describe('Digit', ()=>{
 			expect(result).toBe(false)
 		})
 	})
+
+	describe('SegmentDiffCount returns the difference count between two segments', ()=>{
+		test('With 2 difference (3 vs 8)', ()=> {
+			const segment1 = Digit.parseToSegments(FIXTURE_DIGIT_3)
+			const segment2 = Digit.parseToSegments(FIXTURE_DIGIT_8)
+
+			let result = Digit.segmentDiffCount(segment1, segment2)
+
+			expect(result).toBe(2)
+		})
+
+		test('With 1 difference (1 vs 7)', ()=> {
+			const segment1 = Digit.parseToSegments(FIXTURE_DIGIT_1)
+			const segment2 = Digit.parseToSegments(FIXTURE_DIGIT_7)
+
+			let result = Digit.segmentDiffCount(segment1, segment2)
+
+			expect(result).toBe(1)
+		})
+
+	})
+
 	describe('FromDigitScan', ()=>{
 		test('Resolving broken digit should return NaN', ()=>{
 			const digitToResolve = FIXTURE_BROKEN_DIGIT
