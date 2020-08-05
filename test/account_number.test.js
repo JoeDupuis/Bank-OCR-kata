@@ -30,14 +30,26 @@ describe('AccountNumber', ()=>{
 			expect(result).toBe('00000000?	ILL')
 		})
 
-		test('Should return the account number with status AMB and an array of other possible account if number is ambiguous', ()=>{
-			const ambiguousAccountNumbers = [AccountNumber.fromString('000000000'),
-											   AccountNumber.fromString('123456789')]
-			const subject = AccountNumber.fromString('000000051', ambiguousAccountNumbers)
+		test('Should return the account number with status AMB and an array of other possible account if number is invalid with multiple alternatives', ()=>{
+			const invalidAccountNumber = '100000051'
+			const altAccount1 = AccountNumber.fromString('000000000')
+			const altAccount2 = AccountNumber.fromString('123456789')
+			const subject = AccountNumber.fromString(invalidAccountNumber, [altAccount1, altAccount2])
 
 			const result = subject.toString()
 
-			expect(result).toBe("000000051	AMB	['000000000', '123456789']")
+			expect(result).toBe("100000051	AMB	['000000000', '123456789']")
+		})
+
+		test('Should return the account number without status if valid, ignoring alternatives ', ()=>{
+			const validAccountNumber = '000000051'
+			const altAccount1 = AccountNumber.fromString('000000000')
+			const altAccount2 = AccountNumber.fromString('123456789')
+			const subject = AccountNumber.fromString(validAccountNumber, [altAccount1, altAccount2])
+
+			const result = subject.toString()
+
+			expect(result).toBe("000000051")
 		})
 
 		test('Should return the valid alternative if invalid and only one alternative exist.', ()=>{
