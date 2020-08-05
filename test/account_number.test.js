@@ -49,7 +49,7 @@ describe('AccountNumber', ()=>{
 
 			const result = subject.toString()
 
-			expect(result).toBe("000000051")
+			expect(result).toBe('000000051')
 		})
 
 		test('Should return the valid alternative if invalid and only one alternative exist.', ()=>{
@@ -58,7 +58,7 @@ describe('AccountNumber', ()=>{
 
 			const result = subject.toString()
 
-			expect(result).toBe("000000000")
+			expect(result).toBe('000000000')
 		})
 	})
 
