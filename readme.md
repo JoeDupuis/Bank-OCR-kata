@@ -17,10 +17,10 @@ To output account numbers:
 
 To output them to a file:
 
-`./bankocr parse <filename> <outputFile>`
+`bin/bankocr parse <filename> <outputFile>`
 
 To validate an account number:
-`./bankocr validate <accountNumber>`
+`bin/bankocr validate <accountNumber>`
 
 # Contributing
 ## Setup
