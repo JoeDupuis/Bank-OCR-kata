@@ -169,7 +169,7 @@ describe('AccountNumber', ()=>{
 			const result = subject.findAmbiguousAccountNumbers()
 				  .map(accountNumber => accountNumber.toString())
 
-			expect(result).toStrictEqual(['888886888', '888888988', '888888880'])
+			expect(result).toStrictEqual(['888886888', '888888880', '888888988'])
 		})
 	})
 })
