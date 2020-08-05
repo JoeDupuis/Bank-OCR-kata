@@ -84,7 +84,7 @@ describe('AccountFileReader', ()=>{
 
 	describe('ParseScannedFile should parse the account number from a scanned file and pass them to the given callback', ()=>{
 		test('Print the account number validity status next to the account number', ()=>{
-			const accountFile = './test/fixtures/validation_dummy_account_file.txt'
+			const accountFile = './test/fixtures/dummy_accounts_file.txt'
 			const fakeCallback = jasmine.createSpy('fakeCallback')
 
 			subject.parseScannedFile(accountFile, fakeCallback)
