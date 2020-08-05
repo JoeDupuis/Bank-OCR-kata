@@ -35,6 +35,7 @@
 			"sourceType": "module"
 		},
 		"rules": {
+			"prefer-const": "error",
 			"complexity": [
 				"error",
 				2
@@ -62,7 +63,8 @@
 			],
 			"quotes": [
 				"error",
-				"single"
+				"single",
+				{ "avoidEscape": true }
 			],
 			"semi": [
 				"error",

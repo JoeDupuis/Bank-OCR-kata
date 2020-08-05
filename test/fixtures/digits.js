@@ -56,10 +56,22 @@ const FIXTURE_DIGIT_9 =
 '|_|' +
 ' _|'
 
-const FIXTURE_BROKEN_DIGIT =
+const FIXTURE_DIGIT_5_MISSING =
 '   ' +
 '|_ ' +
 ' _|'
+
+
+const FIXTURE_DIGIT_1_SUPERFLUOUS =
+'   ' +
+'  |' +
+' _|'
+
+
+const FIXTURE_BROKEN_DIGIT =
+'   ' +
+'|_ ' +
+' _ '
 
 export {
 	FIXTURE_DIGIT_0,
@@ -72,5 +84,7 @@ export {
 	FIXTURE_DIGIT_7,
 	FIXTURE_DIGIT_8,
 	FIXTURE_DIGIT_9,
+	FIXTURE_DIGIT_1_SUPERFLUOUS,
+	FIXTURE_DIGIT_5_MISSING,
 	FIXTURE_BROKEN_DIGIT
 }

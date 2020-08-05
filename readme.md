@@ -12,8 +12,15 @@ Run `yarn install` to install the dependencies.
 `yarn build`
 
 ## Run
+To output account numbers:
+`./bankocr parse <filename>`
 
-`./bankocr <filename>`
+To output them to a file:
+
+`./bankocr parse <filename> <outputFile>`
+
+To validate an account number:
+`./bankocr validate <accountNumber>`
 
 # Contributing
 ## Setup
