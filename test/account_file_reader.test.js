@@ -1,5 +1,9 @@
-import {FIXTURE_ACCOUNT_000000000, FIXTURE_ACCOUNT_123456789} from './fixtures/dummy_account_numbers'
-import {FIXTURE_ACCOUNT_49006771X} from './fixtures/invalid_dummy_account_numbers'
+import {
+	FIXTURE_ACCOUNT_000000000,
+	FIXTURE_ACCOUNT_123456789,
+	FIXTURE_ACCOUNT_49006771X
+} from './fixtures/dummy_account_numbers'
+
 import {
 	FIXTURE_DIGIT_0,
 	FIXTURE_DIGIT_1,
@@ -79,39 +83,20 @@ describe('AccountFileReader', ()=>{
 	})
 
 	describe('ParseScannedFile should parse the account number from a scanned file and pass them to the given callback', ()=>{
-		test('Parse account number file and print account number to console', ()=>{
-			const accountFile = './test/fixtures/dummy_accounts_file.txt'
-			const fakeCallback = jasmine.createSpy('fakeCallback')
-
-			subject.parseScannedFile(accountFile, fakeCallback)
-
-			expect(fakeCallback).toHaveBeenCalledTimes(11)
-			expect(fakeCallback.calls.argsFor(0)[0]).toContain( '000000000')
-			expect(fakeCallback.calls.argsFor(1)[0]).toContain( '111111111')
-			expect(fakeCallback.calls.argsFor(2)[0]).toContain( '222222222')
-			expect(fakeCallback.calls.argsFor(3)[0]).toContain( '333333333')
-			expect(fakeCallback.calls.argsFor(4)[0]).toContain( '444444444')
-			expect(fakeCallback.calls.argsFor(5)[0]).toContain( '555555555')
-			expect(fakeCallback.calls.argsFor(6)[0]).toContain( '666666666')
-			expect(fakeCallback.calls.argsFor(7)[0]).toContain( '777777777')
-			expect(fakeCallback.calls.argsFor(8)[0]).toContain( '888888888')
-			expect(fakeCallback.calls.argsFor(9)[0]).toContain( '999999999')
-			expect(fakeCallback.calls.argsFor(10)[0]).toContain('123456789')
-		})
-
-
 		test('Print the account number validity status next to the account number', ()=>{
 			const accountFile = './test/fixtures/validation_dummy_account_file.txt'
 			const fakeCallback = jasmine.createSpy('fakeCallback')
 
 			subject.parseScannedFile(accountFile, fakeCallback)
 
-			expect(fakeCallback).toHaveBeenCalledTimes(5)
+			expect(fakeCallback).toHaveBeenCalledTimes(7)
 			expect(fakeCallback.calls.argsFor(0)[0]).toBe( '711111111') //valid
 			expect(fakeCallback.calls.argsFor(1)[0]).toBe( '777777177') //valid
-			expect(fakeCallback.calls.argsFor(2)[0]).toBe( '100000051	ERR') //invalid
-			expect(fakeCallback.calls.argsFor(3)[0]).toBe( '49006771?	ILL') //unreadable
-			expect(fakeCallback.calls.argsFor(4)[0]).toBe( '1234?678?	ILL') //unreadable
+			expect(fakeCallback.calls.argsFor(2)[0]).toBe( '711111111') //valid with one substitution
+			expect(fakeCallback.calls.argsFor(3)[0]).toBe( '222222222	ERR') //invalid
+			expect(fakeCallback.calls.argsFor(4)[0]).toBe( "100000051	AMB	['100000061', '100000851']") //Ambiguous
+			expect(fakeCallback.calls.argsFor(5)[0]).toBe( '49006771?	ILL') //unreadable
+			expect(fakeCallback.calls.argsFor(6)[0]).toBe( '1234?678?	ILL') //unreadable
 		})
 	})
 })

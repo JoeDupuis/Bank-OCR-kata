@@ -29,6 +29,25 @@ describe('AccountNumber', ()=>{
 
 			expect(result).toBe('00000000?	ILL')
 		})
+
+		test('Should return the account number with status AMB and an array of other possible account if number is ambiguous', ()=>{
+			const ambiguousAccountNumbers = [AccountNumber.fromString('000000000'),
+											   AccountNumber.fromString('123456789')]
+			const subject = AccountNumber.fromString('000000051', ambiguousAccountNumbers)
+
+			const result = subject.toString()
+
+			expect(result).toBe("000000051	AMB	['000000000', '123456789']")
+		})
+
+		test('Should return the valid alternative if invalid and only one alternative exist.', ()=>{
+			const ambiguousAccountNumbers = [AccountNumber.fromString('000000000')]
+			const subject = AccountNumber.fromString('100000051', ambiguousAccountNumbers)
+
+			const result = subject.toString()
+
+			expect(result).toBe("000000000")
+		})
 	})
 
 	describe('Readable', ()=>{
