@@ -154,7 +154,7 @@ describe('AccountNumber', ()=>{
 		})
 	})
 
-	describe('OtherPossibleAccountNumbers', ()=>{
+	describe('FindAmbiguousAccountNumbers', ()=>{
 		test('Returns list of other possible account number when changing only one segment', ()=>{
 			const subject = new AccountNumber([new Digit(8, [0,6,9]),
 											   new Digit(8, [0,6,9]),
@@ -166,7 +166,7 @@ describe('AccountNumber', ()=>{
 											   new Digit(8, [0,6,9]),
 											   new Digit(8, [0,6,9])])
 
-			const result = subject.otherPossibleAccountNumbers()
+			const result = subject.findAmbiguousAccountNumbers()
 				  .map(accountNumber => accountNumber.toString())
 
 			expect(result).toStrictEqual(['888886888', '888888988', '888888880'])
